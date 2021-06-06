@@ -4,6 +4,7 @@ import styled from "styled-components";
 import "./MealPlan.css";
 
 const Button = styled.button`
+  /* Adapt the colors based on primary prop */
   background: ${(props) => (props.primary ? "palevioletred" : "white")};
   color: ${(props) => (props.primary ? "white" : "palevioletred")};
 
@@ -52,7 +53,7 @@ class MealCard extends Component {
           </div>
 
           <Button primary onClick={this.handleClick}>
-            Details
+            Back
           </Button>
         </div>
       </ReactCardFlip>
@@ -61,7 +62,3 @@ class MealCard extends Component {
 }
 
 export default MealCard;
-/*
-        <div className="fullCard mx-auto mb-5 full"></div>
-
-*/

@@ -37,7 +37,6 @@ function CalculateBMI() {
   const calculateBMI = () => {
     let heightDouble = height * 0.01;
     const formula = weight / (heightDouble * heightDouble);
-    console.log(formula);
     setChanger(formula);
   };
 

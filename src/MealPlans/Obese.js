@@ -1,8 +1,15 @@
 import React, { useEffect, useState } from "react";
 import "./MealPlan.css";
+import MealCard from "./MealCard";
+import calorie from "../images/calorie.png";
+import carbon from "../images/carbon.png";
+import protein from "../images/protein.png";
+import fat from "../images/fat.png";
 
 function Obese() {
   const [obesePlan, setObesePlan] = useState([]);
+  const [nutrients, setNutrients] = useState([]);
+
   useEffect(() => {
     var requestOptions = {
       method: "GET",
@@ -14,8 +21,8 @@ function Obese() {
     )
       .then((response) => response.json())
       .then((result) => {
-        //console.log(result);
         setObesePlan(result.meals);
+        setNutrients(result.nutrients);
       })
       .catch((error) => console.log("error", error));
   }, []);
@@ -25,6 +32,42 @@ function Obese() {
       <h3 className="text-center mb-4">
         You are an Obese Person. You should take 1850 calories per day.
       </h3>
+      <div className="container mb-4">
+        <div className="row mx-auto">
+          <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3 text-center">
+            <span className="me-3">
+              <img src={calorie} className="iconWidth me-1" alt="..." />
+              <span className="nutrientInfo me-1">
+                Total Calories: {nutrients.calories}
+              </span>
+            </span>
+          </div>
+          <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3 text-center">
+            <span className="me-3">
+              <img src={protein} className="iconWidth me-1" alt="..." />
+              <span className="nutrientInfo me-1">
+                Total Protein: {nutrients.protein}
+              </span>
+            </span>
+          </div>
+          <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3 text-center">
+            <span className="me-3">
+              <img src={fat} className="iconWidth me-1" alt="..." />
+              <span className="nutrientInfo me-1">
+                Total Fats: {nutrients.fat}
+              </span>
+            </span>
+          </div>
+          <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3 text-center">
+            <span className="me-3">
+              <img src={carbon} className="iconWidth me-1" alt="..." />
+              <span className="nutrientInfo me-1 fs-6">
+                Total Carbohydrates: {nutrients.carbohydrates}
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
       <div className="container">
         <div className="row">
           {obesePlan.map((item, index) => {
@@ -33,19 +76,7 @@ function Obese() {
                 className="col-sm-12 col-md-12 col-lg-4 col-xl-4"
                 key={index}
               >
-                <div
-                  className="card mx-auto mb-5"
-                  style={{ width: "250px", height: "250px" }}
-                >
-                  <img
-                    src={`https://spoonacular.com/recipeImages/${item.id}-556x370.jpg`}
-                    className="card-img-top"
-                    alt="..."
-                  />
-                  <div className="card-body">
-                    <h6 className="card-title">{item.title}</h6>
-                  </div>
-                </div>
+                <MealCard item={item} />
               </div>
             );
           })}
@@ -56,8 +87,3 @@ function Obese() {
 }
 
 export default Obese;
-/*
-{obesePlan.map((item, index) => {
-          <li key={index}>{item.meals.id}</li>;
-        })}
-*/

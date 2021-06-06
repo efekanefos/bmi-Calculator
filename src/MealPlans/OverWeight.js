@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./MealPlan.css";
 import MealCard from "./MealCard";
+import calorie from "../images/calorie.png";
+import carbon from "../images/carbon.png";
+import protein from "../images/protein.png";
+import fat from "../images/fat.png";
 function OverWeight() {
   const [overPlan, setOverPlan] = useState([]);
+  const [nutrients, setNutrients] = useState([]);
 
   useEffect(() => {
     var requestOptions = {
@@ -16,6 +21,7 @@ function OverWeight() {
       .then((response) => response.json())
       .then((result) => {
         setOverPlan(result.meals);
+        setNutrients(result.nutrients);
       })
       .catch((error) => console.log("error", error));
   }, []);
@@ -24,6 +30,42 @@ function OverWeight() {
       <h3 className="text-center mb-4">
         You are an OverWeight Person. You should take 2330 calories per day.
       </h3>
+      <div className="container mb-4">
+        <div className="row mx-auto">
+          <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3 text-center">
+            <span className="me-3">
+              <img src={calorie} className="iconWidth me-1" alt="..." />
+              <span className="nutrientInfo me-1">
+                Total Calories: {nutrients.calories}
+              </span>
+            </span>
+          </div>
+          <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3 text-center">
+            <span className="me-3">
+              <img src={protein} className="iconWidth me-1" alt="..." />
+              <span className="nutrientInfo me-1">
+                Total Protein: {nutrients.protein}
+              </span>
+            </span>
+          </div>
+          <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3 text-center">
+            <span className="me-3">
+              <img src={fat} className="iconWidth me-1" alt="..." />
+              <span className="nutrientInfo me-1">
+                Total Fats: {nutrients.fat}
+              </span>
+            </span>
+          </div>
+          <div className="col-sm-12 col-md-3 col-lg-3 col-xl-3 text-center">
+            <span className="me-3">
+              <img src={carbon} className="iconWidth me-1" alt="..." />
+              <span className="nutrientInfo me-1 fs-6">
+                Total Carbohydrates: {nutrients.carbohydrates}
+              </span>
+            </span>
+          </div>
+        </div>
+      </div>
       <div className="container">
         <div className="row text-center">
           {overPlan.map((item, index) => {
@@ -43,16 +85,3 @@ function OverWeight() {
 }
 
 export default OverWeight;
-/*
-<div
-                  className="card mx-auto mb-5"
-                  style={{ width: "250px", height: "250px" }}
-                >
-                  <img
-                    src={`https://spoonacular.com/recipeImages/${item.id}-556x370.jpg`}
-                    className="card-img-top"
-                    alt="..."
-                  />
-                  <div className="card-body">{item.title}</div>
-                </div>
-*/
