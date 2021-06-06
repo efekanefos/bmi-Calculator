@@ -27,7 +27,7 @@ export default function WhatIsBMI() {
   const classes = useStyles();
 
   return (
-    <div>
+    <div className="full">
       <Navbar />
       <Timeline align="alternate">
         <TimelineItem>

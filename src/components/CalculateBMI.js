@@ -33,24 +33,6 @@ function CalculateBMI() {
   const [weight, setWeight] = useLocalStorage("weight", "");
   const [height, setHeight] = useLocalStorage("height", "");
   const [changer, setChanger] = useState("");
-  /*
-  const handleSubmit = () => {
-    console.log("weight", weight);
-    console.log("height", height);
-    
-    setWeight("");
-    setHeight("");
-    
-  };
-  const setData = () => {
-    localStorage.setItem("weight", JSON.stringify(weight));
-    localStorage.setItem("height", JSON.stringify(height));
-    let localweight = localStorage.getItem("weight");
-    let localheight = localStorage.getItem("height");
-    setWeight(JSON.parse(localweight));
-    setHeight(JSON.parse(localheight));
-  };
-  */
 
   const calculateBMI = () => {
     let heightDouble = height * 0.01;
