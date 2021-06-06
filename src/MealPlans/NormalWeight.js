@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./MealPlan.css";
+
 function NormalWeight() {
   const [normalPlan, setNormalPlan] = useState([]);
 

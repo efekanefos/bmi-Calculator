@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./MealPlan.css";
-
+import MealCard from "./MealCard";
 function OverWeight() {
   const [overPlan, setOverPlan] = useState([]);
 
@@ -32,17 +32,7 @@ function OverWeight() {
                 className="col-sm-12 col-md-12 col-lg-4 col-xl-4"
                 key={index}
               >
-                <div
-                  className="card mx-auto mb-5"
-                  style={{ width: "250px", height: "250px" }}
-                >
-                  <img
-                    src={`https://spoonacular.com/recipeImages/${item.id}-556x370.jpg`}
-                    className="card-img-top"
-                    alt="..."
-                  />
-                  <div className="card-body">{item.title}</div>
-                </div>
+                <MealCard item={item} />
               </div>
             );
           })}
@@ -53,3 +43,16 @@ function OverWeight() {
 }
 
 export default OverWeight;
+/*
+<div
+                  className="card mx-auto mb-5"
+                  style={{ width: "250px", height: "250px" }}
+                >
+                  <img
+                    src={`https://spoonacular.com/recipeImages/${item.id}-556x370.jpg`}
+                    className="card-img-top"
+                    alt="..."
+                  />
+                  <div className="card-body">{item.title}</div>
+                </div>
+*/

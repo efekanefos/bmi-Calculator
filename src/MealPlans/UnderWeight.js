@@ -1,7 +1,20 @@
 import React, { useEffect, useState } from "react";
 import "./MealPlan.css";
+import MealCard from "../MealPlans/MealCard";
 
 function UnderWeight() {
+  const styles = {
+    card: {
+      border: "1px solid #eeeeee",
+      borderRadius: "3px",
+      padding: "15px",
+      width: "250px",
+    },
+    image: {
+      height: "200px",
+      width: "250px",
+    },
+  };
   const [underPlan, setUnderPlan] = useState([]);
 
   useEffect(() => {
@@ -36,19 +49,7 @@ function UnderWeight() {
                 className="col-sm-12 col-md-12 col-lg-4 col-xl-4"
                 key={index}
               >
-                <div
-                  className="card mx-auto mb-5"
-                  style={{ width: "250px", height: "250px" }}
-                >
-                  <img
-                    src={`https://spoonacular.com/recipeImages/${item.id}-556x370.jpg`}
-                    className="card-img-top"
-                    alt="..."
-                  />
-                  <div className="card-body">
-                    <h5 className="card-title">{item.title}</h5>
-                  </div>
-                </div>
+                <MealCard styles={styles} item={item} />
               </div>
             );
           })}

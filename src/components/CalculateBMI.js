@@ -7,6 +7,7 @@ import UnderWeight from "../MealPlans/UnderWeight";
 import NormalWeight from "../MealPlans/NormalWeight";
 import OverWeight from "../MealPlans/OverWeight";
 import Obese from "../MealPlans/Obese";
+import useLocalStorage from "../localStorage/useLocalStorage";
 
 const useStyles = makeStyles((theme) => ({
   margin: {
@@ -29,16 +30,27 @@ const Button = styled.button`
 function CalculateBMI() {
   const classes = useStyles();
 
-  const [weight, setWeight] = useState("");
-  const [height, setHeight] = useState("");
+  const [weight, setWeight] = useLocalStorage("weight", "");
+  const [height, setHeight] = useLocalStorage("height", "");
   const [changer, setChanger] = useState("");
-
+  /*
   const handleSubmit = () => {
     console.log("weight", weight);
     console.log("height", height);
+    
     setWeight("");
     setHeight("");
+    
   };
+  const setData = () => {
+    localStorage.setItem("weight", JSON.stringify(weight));
+    localStorage.setItem("height", JSON.stringify(height));
+    let localweight = localStorage.getItem("weight");
+    let localheight = localStorage.getItem("height");
+    setWeight(JSON.parse(localweight));
+    setHeight(JSON.parse(localheight));
+  };
+  */
 
   const calculateBMI = () => {
     let heightDouble = height * 0.01;
@@ -84,11 +96,7 @@ function CalculateBMI() {
         </div>
       </div>
 
-      <Button
-        primary
-        className="mx-auto d-block"
-        onClick={(handleSubmit, calculateBMI)}
-      >
+      <Button primary className="mx-auto d-block" onClick={calculateBMI}>
         Submit
       </Button>
       {changer === "" ? (
